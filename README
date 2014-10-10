@@ -1,0 +1,8 @@
+* Purpose
+NOTHING
+
+* Prerequisites
+- Uses [[https://nose.readthedocs.org/en/latest/][Nosetest]] for testing.
+* Testing
+easy_install nose or pip install nose.
+nosetests
