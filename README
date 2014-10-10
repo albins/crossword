@@ -6,3 +6,5 @@ NOTHING
 * Testing
 easy_install nose or pip install nose.
 nosetests
+
+For continuous testing on file changes, run watch_files.sh (requires inotifywait from inotify-tools).
