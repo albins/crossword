@@ -52,8 +52,8 @@ def printMatrix(matrix):
 
 def addWord(x, y, hor, word, m):
     '''
-    x :: x-coordinate
-    y :: y-coordinate
+    x :: 0-indexed x-coordinate
+    y :: 0-indexed y-coordinate
     hor :: horizontal or not
     word :: word to write
     m :: matrix to test and write
