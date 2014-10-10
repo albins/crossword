@@ -10,6 +10,10 @@ countLetters(words, scoretable)
     receives a word and a scoretable, counts the letters and updates it
     returns new array
     NOTE: only accepts lowercase a-z in ascii
+
+weighWordList(words)
+    receives a list of words
+    outputs a dictionary scoring each word
 '''
 
 from array import array
@@ -55,4 +59,15 @@ def countLetters(word, nCharScore):
             nCharScore[i] -= 1
     
     return nCharScore
+
+
+
+def weighWordList(words):
+    '''
+    receives list of words, words
+    '''
+    return words
+
+
+
 
