@@ -66,8 +66,34 @@ def weighWordList(words):
     '''
     receives list of words, words
     '''
-    return words
+    
+    indexWords = words
+    wordScore = []
+
+    charScore = weighChar(words)
+    
+    for word in words:
+        score = weighWord(word, charScore)
+        wordScore.append(score)
+    
+    scoredWords = dict(zip(indexWords,wordScore))
+    print scoredWords
+    return scoredWords
 
 
 
+def weighWord(word, charScore):
+    score = 0
+    for l in word:
+        i = ord(l) - 97
+        score += charScore[i]
+    return score
 
+
+def sortIndexList(scoredWords):
+    return None
+
+#testing
+w = ["hej","hoho","zoo","bu"]
+
+i = weighWordList(w)
