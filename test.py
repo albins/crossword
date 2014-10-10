@@ -1,4 +1,4 @@
-from lettermatrix import letterMatrix, addWord, printMatrix, EMPTY_CELL
+from lettermatrix import letterMatrix, addWord, printMatrix, EMPTY_CELL, row, column
 from nose.tools import assert_equal, assert_not_equal, assert_raises, raises
 
 class TestBasicMatrixOperations(object):
@@ -12,15 +12,20 @@ class TestBasicMatrixOperations(object):
             for cell in row:
                 assert cell == EMPTY_CELL
 
+    def test_row(self):
+        assert False
+
+    def test_column(self):
+        assert False
+
     def test_add_horizontal(self):
         word = "pig"
         nm = addWord(3,4, True, word, self.matrix)
+        letters_row = row(nm, 4)
+        stop = 4 + len(word)
+        print letters_row
         printMatrix(self.matrix)
-        correct_column = nm[3]
-        correct_word = correct_row[3:]
-        print correct_word
-        print correct_row
-        assert False
+        assert letters_row[3:stop] == word
 
     def test_add_vertical(self):
         assert False

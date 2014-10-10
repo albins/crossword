@@ -17,6 +17,18 @@ from array import array
 # a string which will be represented as empty space
 EMPTY_CELL = '.'
 
+def row(m, y):
+    '''
+    Get the 0-indexed row y from matrix m.
+    '''
+    return []
+
+def column(m, x):
+    '''
+    Get the 0-indexed column x from matrix m.
+    '''
+    return []
+
 def letterMatrix(sizeX, sizeY):
     '''
     we will create a list of arrays, constrained to characters
