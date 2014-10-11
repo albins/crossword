@@ -21,13 +21,13 @@ def row(m, y):
     '''
     Get the 0-indexed row y from matrix m.
     '''
-    return []
+    return [row[y] for row in m]
 
 def column(m, x):
     '''
     Get the 0-indexed column x from matrix m.
     '''
-    return []
+    return m[x]
 
 def letterMatrix(sizeX, sizeY):
     '''
