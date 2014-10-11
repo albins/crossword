@@ -3,10 +3,11 @@ from nose.tools import assert_equal, assert_not_equal, assert_raises, raises
 import nose
 
 class TestBasicMatrixOperations(object):
-
+    MATRIX_SIZE = 30
     def setUp(self):
+
         # always make sure self.matrix is a fresh 10x10 matrix
-        self.matrix = letterMatrix(10, 10)
+        self.matrix = letterMatrix(self.MATRIX_SIZE, self.MATRIX_SIZE)
 
     def test_new_matrix(self):
         m = letterMatrix(4,4)
@@ -49,14 +50,14 @@ class TestBasicMatrixOperations(object):
         test_matrix = self.matrix
         # fill the matrix one space at a time, only even column
         # numbers
-        for x in range(0,10,2):
-            for y in range(0,10):
+        for x in range(0,self.MATRIX_SIZE,2):
+            for y in range(0,self.MATRIX_SIZE):
                 print  str(x) + ", " + str(y)
                 assert test_matrix
                 printMatrix(test_matrix)
                 test_matrix = addWord(x, y, False, letter, test_matrix)
         # and assert that the matrix is actually filled:
-        for column_no in range(0,10,2):
+        for column_no in range(0,self.MATRIX_SIZE,2):
             for cell in column(test_matrix, column_no):
                 assert cell == letter
 
@@ -65,14 +66,14 @@ class TestBasicMatrixOperations(object):
         test_matrix = self.matrix
         # fill the matrix one space at a time, only odd column
         # numbers
-        for x in range(1,10,2):
-            for y in range(0,10):
+        for x in range(1,self.MATRIX_SIZE, 2):
+            for y in range(0,self.MATRIX_SIZE):
                 print  str(x) + ", " + str(y)
                 assert test_matrix
                 printMatrix(test_matrix)
                 test_matrix = addWord(x, y, False, letter, test_matrix)
         # and assert that the matrix is actually filled:
-        for column_no in range(1,10,2):
+        for column_no in range(1,self.MATRIX_SIZE,2):
             for cell in column(test_matrix, column_no):
                 assert cell == letter
 
@@ -83,6 +84,5 @@ class TestBasicMatrixOperations(object):
         assert nm
         letters_column = ''.join(filter_empty(column(nm,9)))
         assert letters_column == word
-
 if __name__ == '__main__':
     nose.main()
