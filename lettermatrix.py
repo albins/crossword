@@ -11,11 +11,11 @@ addWord(int_x, int_y, bool_horizontal, string_word, matrix)
     returns new matrix if successful, otherwise None
 '''
 #from array import *
-from array import array
+#from array import array
 
 
 # a string which will be represented as empty space
-EMPTY_CELL = '.'
+EMPTY_CELL = None
 
 def filter_empty(row_or_column):
     '''
@@ -42,10 +42,9 @@ def letterMatrix(sizeX, sizeY):
     '''
     matrix = []         #defining the list
 
-    while sizeX > 0:
-        column = array('c', EMPTY_CELL * sizeY)   #a row with 0 in each column
+    for _ in range(0, sizeX):
+        column = [EMPTY_CELL for __ in range(0, sizeY)]
         matrix.append(column)
-        sizeX -= 1
 
     return matrix
 

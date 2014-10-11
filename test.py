@@ -83,6 +83,5 @@ class TestBasicMatrixOperations(object):
         assert nm
         letters_column = ''.join(filter_empty(column(nm,9)))
         assert letters_column == word
-
 if __name__ == '__main__':
     nose.main()
