@@ -17,6 +17,13 @@ from array import array
 # a string which will be represented as empty space
 EMPTY_CELL = '.'
 
+def filter_empty(row_or_column):
+    '''
+    Filter a row or column from row() or column(), removing empty
+    markers.
+    '''
+    return filter(lambda char: not char == EMPTY_CELL, row_or_column)
+
 def row(m, y):
     '''
     Get the 0-indexed row y from matrix m.
