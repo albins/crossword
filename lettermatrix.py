@@ -28,7 +28,7 @@ def row(m, y):
     '''
     Get the 0-indexed row y from matrix m.
     '''
-    return [row[y] for row in m]
+    return [column[y] for column in m]
 
 def column(m, x):
     '''
