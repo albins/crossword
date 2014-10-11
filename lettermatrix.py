@@ -53,20 +53,14 @@ def printMatrix(matrix):
     '''
     this prints the contents of the matrix in a terminal
     '''
-    columnLength = len(matrix[0])  #we will assume all the columns have the same length
-    rowLength = len(matrix)
-
-
-    y = 0
-    while y < columnLength:
-        x = 0
-        while x < rowLength:
-            print matrix[x][y],
-            x += 1
-
-
-        print '\n',
-        y  += 1
+    for x in range(0, len(matrix)):
+        for y in range (0, len(matrix[0])):
+            cell = matrix[x][y]
+            if cell != EMPTY_CELL:
+                print cell,
+            else:
+                print '.',
+        print '' # finishing newline
 
 def addWord(x, y, hor, word, m):
     '''
