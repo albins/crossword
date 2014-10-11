@@ -10,11 +10,7 @@ printMatrix(m)
 addWord(int_x, int_y, bool_horizontal, string_word, matrix)
     returns new matrix if successful, otherwise None
 '''
-#from array import *
-#from array import array
 
-
-# a string which will be represented as empty space
 EMPTY_CELL = None
 
 def filter_empty(row_or_column):
