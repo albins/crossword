@@ -76,7 +76,8 @@ def weighWordList(words):
         score = weighWord(word, charScore)
         wordScore.append(score)
     
-    scoredWords = dict(zip(indexWords,wordScore))
+    #scoredWords = dict(zip(indexWords,wordScore))
+    scoredWords = [indexWords, wordScore]
     print scoredWords
     return scoredWords
 
@@ -91,7 +92,32 @@ def weighWord(word, charScore):
 
 
 def sortIndexList(scoredWords):
+    
+    i = 0
+    j = len(scoredWords[1])
+    sortedList = []
+    while i < j:
+        index = findTopWord(scoredWords)
+
+    
+
     return None
+
+def findTopWord(scoredWords):
+    topScore = 0
+    i = 0
+    index = 0
+    word = " "
+    for score in scoredWords[1]:
+        i+=1
+        if score > topScore:
+            score = topScore
+            index = i
+
+    return index
+    
+    
+
 
 #testing
 w = ["hej","hoho","zoo","bu"]
