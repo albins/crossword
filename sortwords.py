@@ -13,7 +13,22 @@ countLetters(words, scoretable)
 
 weighWordList(words)
     receives a list of words
-    outputs a dictionary scoring each word
+    outputs two lists in a list, with words and corresponding scores
+
+
+weighWord(word, charScore)
+    receives a word and general character score
+    outputs the score of the word
+
+
+sortIndexList(scoredWords)
+    receives the list with words/score lists, where they share index
+    outputs a sorted list of words only
+
+
+findTopWord(scoredWords)
+    receives a words/score list, where they share index
+    returns the index of top scoring word
 '''
 
 from array import array
@@ -64,27 +79,39 @@ def countLetters(word, nCharScore):
 
 def weighWordList(words):
     '''
-    receives list of words, words
+    receives list of strings, counts frequency of characters
+    scores words by letting each character add to the score
     '''
     
+    copying received words, otherwise external modifications screw it up
     indexWords = words
+    #initializing list wordScore
     wordScore = []
 
+    #generating list of individual character score
     charScore = weighChar(words)
     
+    #generating list of scores for each word, with matching index
     for word in words:
         score = weighWord(word, charScore)
         wordScore.append(score)
     
-    #scoredWords = dict(zip(indexWords,wordScore))
+    #composing the two lists to a single one
     scoredWords = [indexWords, wordScore]
-    print scoredWords
     return scoredWords
 
 
 
 def weighWord(word, charScore):
+    '''
+    receives a string and a list with scores for each character
+    returns the score for the string
+    '''
+    
+    #initializing score for word
     score = 0
+    
+    #finding total by adding the value of each character to score
     for l in word:
         i = ord(l) - 97
         score += charScore[i]
@@ -92,11 +119,20 @@ def weighWord(word, charScore):
 
 
 def sortIndexList(scoredWords):
-    
+    '''
+    receives a list with a list of words, and a corresponding list of scores
+    outputs a list of words, sorted by their score
+    '''
+    #variables for while-loop
     i = 0
     j = len(scoredWords[1])
+    
+    #initializing sorted list for output
     sortedList = []
+
+    #this can probably be deleted..
     index = 0
+
     while i < j:
         index = findTopWord(scoredWords)
         nextWord = scoredWords[0].pop(index)
@@ -107,6 +143,11 @@ def sortIndexList(scoredWords):
     return sortedList
 
 def findTopWord(scoredWords):
+    '''
+    receives a list with list of words and corresponding list of scores
+    returns index of the word with highest score
+    '''
+    
     topScore = 0
     i = 0
     j = len(scoredWords[1])
