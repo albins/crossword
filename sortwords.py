@@ -96,23 +96,27 @@ def sortIndexList(scoredWords):
     i = 0
     j = len(scoredWords[1])
     sortedList = []
+    index = 0
     while i < j:
         index = findTopWord(scoredWords)
-
-    
-
-    return None
+        nextWord = scoredWords[0].pop(index)
+        scoredWords[1].pop(index)
+        sortedList.append(nextWord)
+        i+=1
+        
+    return sortedList
 
 def findTopWord(scoredWords):
     topScore = 0
     i = 0
+    j = len(scoredWords[1])
     index = 0
-    word = " "
-    for score in scoredWords[1]:
-        i+=1
+    while i < j:
+        score = scoredWords[1][i]
         if score > topScore:
-            score = topScore
+            topScore = score
             index = i
+        i+=1
 
     return index
     
@@ -120,6 +124,7 @@ def findTopWord(scoredWords):
 
 
 #testing
-w = ["hej","hoho","zoo","bu"]
+w = ["hej","hoho","zoo","bu","nationalencyklopedi", "kontroll"]
 
 i = weighWordList(w)
+print sortIndexList(i)
