@@ -32,7 +32,7 @@ findTopWord(scoredWords)
 '''
 
 from array import array
-baseScore = 120
+BASE_SCORE = 120
 
 
 
@@ -43,7 +43,7 @@ def weighChar(words):
 
     #first we'll make an empty array with 26 slots
     charScore = array('B', [])
-    emptyScore = array('B', [baseScore])
+    emptyScore = array('B', [BASE_SCORE])
     alphabetLength = 26
 
     for _ in range(0,alphabetLength):
@@ -59,19 +59,16 @@ def weighChar(words):
 
     return charScore
 
-
 def countLetters(word, nCharScore):
     '''
     count the letters in any in string and update character score
     '''
     for l in word:
-        i = ord(l) - 97
-        if nCharScore[i] >= 0:
-            nCharScore[i] -= 1
+        charIndex = ord(l) - 97
+        if nCharScore[charIndex] >= 0:
+            nCharScore[charIndex] -= 1
 
     return nCharScore
-
-
 
 def weighWordList(words):
     '''
@@ -96,8 +93,6 @@ def weighWordList(words):
     scoredWords = [indexWords, wordScore]
     return scoredWords
 
-
-
 def weighWord(word, charScore):
     '''
     receives a string and a list with scores for each character
@@ -112,7 +107,6 @@ def weighWord(word, charScore):
         i = ord(l) - 97
         score += charScore[i]
     return score
-
 
 def sortIndexList(scoredWords):
     '''
