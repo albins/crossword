@@ -93,8 +93,6 @@ def weighWordList(words):
     scoredWords = [indexWords, wordScore]
     return scoredWords
 
-
-
 def weighWord(word, charScore):
     '''
     receives a string and a list with scores for each character
@@ -109,7 +107,6 @@ def weighWord(word, charScore):
         i = ord(l) - 97
         score += charScore[i]
     return score
-
 
 def sortIndexList(scoredWords):
     '''
