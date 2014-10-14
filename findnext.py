@@ -59,32 +59,35 @@ def testWord(matrix, placedWords, testWord):
     Tries to place a given word in the matrix
     First looks for it in the database. If successful, tests the word in the matrix.
     
-    If word can be placed, it will output a list of word, x, y 
+    If word can be placed, it will output a list of word, x, y, and horizontal 
     '''
 
     #first we pick a word from list of used words
     index = 0
-    for placedWord in placedWords[0]:
-
+    for placedWord in placedWords:
         #then we pick a character from a placed word
         placedCharIndex = 0
-        for placedChar in placedWord:
+        for placedChar in placedWord[0]:
+
             #now we compare that character to those in the new word
             testCharIndex = 0
             for testChar in testWord:
+         
                 #if they're the same, we try if it fits in the matrix
                 if testChar == placedChar:
-                    x = placedWords[1][index]
-                    y = placedWords[2][index]
+                    
+                    x = placedWords[index][1]
+                    y = placedWords[index][2]
                     hor = True
                     
                     #shifting x/y/hor values according to horizontal
                     #...and where the character is
-                    if placedWords[3][index] == True:
+                    if placedWords[index][3] == True:
                         hor = False
                         x += placedCharIndex
                         y -= testCharIndex
                     else:
+                        print "success"
                         hor = True
                         y += placedCharIndex
                         x -= testCharIndex
@@ -126,9 +129,11 @@ def stupidlyPlaceWord(m, word):
     return None
 
 def stupidlyPlaceWords(m, words):
-    x, y = findMiddle(m, words[0])
+    xy = findMiddle(m, words[0])
+    return [words[0],xy[0],xy[1],True]
+    '''
     # first word is always horizontal
-    m = addWord(x, y, True, words[0])
+    m = addWord(xy[0], xy[1], True, words[0])
 
     # add the rest of the words
     for word in words[1:]:
@@ -136,17 +141,17 @@ def stupidlyPlaceWords(m, words):
         # if it succeeded, proceed
         # otherwise bail out, returning results so far
         break
+    '''
 
 
 
 
+
+
+#uncomment to test the functions
 
 
 '''
-for testing the functions
-'''
-
-
 m1 = letterMatrix(20,20)
 co = findMiddle(m1,"tjoho")
 w0 = ["tjoho","aoeu","oeui","euid","uidh"]
@@ -166,5 +171,5 @@ print nw
 m2 = addWord(nw[1],nw[2],nw[3],nw[0],m1)
 printMatrix(m2) 
 
-
+'''
 
