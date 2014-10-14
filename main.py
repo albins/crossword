@@ -2,6 +2,18 @@
 import argparse
 import lettermatrix as matrix
 
+def sanitizeWords(words):
+    '''
+    Clean a list of words from all non-lower-case ASCII letters.
+    '''
+    def sanitizeWord(word):
+        start = ord('A')
+        end = ord('z') + 1
+        asciiWord = ''.join([i  if ord(i) in range(start, end) else '' for i in word])
+        return asciiWord.lower()
+
+    return map(sanitizeWord, words)
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate a square crossword from the given words.')
     parser.add_argument('words', metavar='W', type=str, nargs='+',
@@ -11,6 +23,7 @@ if __name__ == '__main__':
                         help='the target crossword size as a number (default: 10x10).')
 
     args = parser.parse_args()
+    cleanWords = sanitizeWords(args.words)
     m = matrix.letterMatrix(args.size, args.size)
-    m = matrix.addWord(1, 1 , True, args.words[0], m)
+    m = matrix.addWord(1, 1 , True, cleanWords[0], m)
     matrix.printMatrix(m)
