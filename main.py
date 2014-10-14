@@ -7,7 +7,7 @@ def usage():
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Generate a crossword from the given words.')
+    parser = argparse.ArgumentParser(description='Generate a square crossword from the given words.')
     parser.add_argument('words', metavar='W', type=str, nargs='+',
                         help='a word to place on crossword')
     parser.add_argument('--size', dest='size',
