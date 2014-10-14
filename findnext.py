@@ -7,7 +7,6 @@ placedWords
 
 from lettermatrix import *
 
-
 def placeNextWord(matrix, placedWords, newWords):
     '''
     returns an updated list containing:
@@ -29,12 +28,13 @@ def placeNextWord(matrix, placedWords, newWords):
         
         #test the word by using a new variable
         tryNewWord = testWord(matrix, placedWords, newWord)
-
+        print tryNewWord
         #if it works, delete it from its list and return a new list using the added word
-        if testWord(matrix, placedWords, newWord) != False:
-            newWords.pop([index])
-            return placedWords.append(tryNewWord)
-        
+        if tryNewWord != False:
+            newWords.pop(index)
+            #return placedWords.append(tryNewWord)
+            print "now?"
+            return tryNewWord 
         index += 1
 
     #if none of the new words fit, return False
@@ -56,30 +56,34 @@ def testWord(matrix, placedWords, testWord):
         #then we pick a character from a placed word
         placedCharIndex = 0
         for placedChar in placedWord:
-
+            print placedChar,
             #now we compare that character to those in the new word
             testCharIndex = 0
             for testChar in testWord:
-
+                print testChar,
                 #if they're the same, we try if it fits in the matrix
-                if testChar == char:
-                    x = placedWord[1][i]
-                    y = placedWord[2][i]
-
-                    #the new word must cross the placed word
-                    hor != placedWord[3][i]
-
-                    #shifting x/y values according to where the character is
-                    if hor != True:
+                if testChar == placedChar:
+                    x = placedWords[1][index]
+                    y = placedWords[2][index]
+                    hor = True
+                    
+                    #shifting x/y/hor values according to horizontal
+                    #...and where the character is
+                    if placedWords[3][index] == True:
+                        hor = False
                         x += placedCharIndex
                         y -= testCharIndex
+                        print "vertical"
+                        print x, y
                     else:
+                        hor = True
                         y += placedCharIndex
                         x -= testCharIndex
 
                     #now trying to place the character in the matrix
                     if testNewWord(x,y,hor,testWord,matrix) != False:
-                        return [word, x, y, hor]
+                        print "returning the word"
+                        return [testWord, x, y, hor]
                     
                 testCharIndex += 1
             placedCharIndex += 1
@@ -124,3 +128,34 @@ def stupidlyPlaceWords(m, words):
         # if it succeeded, proceed
         # otherwise bail out, returning results so far
         break
+
+
+
+
+
+
+'''
+a couple of test runs
+'''
+
+
+w0 = ["aoeu","oeui","euid","uidh"]
+w1 = [2, 3, 5, 6]
+w2 = [2, 9, 2, 9]
+w3 = [True, True, True, True]
+w = [w0,w1,w2,w3]
+print w
+m1 = letterMatrix(20,20)
+m1 = addWord(w[1][0],w[2][0],w[3][0],w[0][0],m1)
+printMatrix(m1)
+print "now testing testWord"
+#t1 = testWord(m1, w, "oooo")
+#print t1
+nw0 = ["xx", "cool"]
+nw = placeNextWord(m1, w, nw0)
+print nw
+m2 = addWord(nw[1],nw[2],nw[3],nw[0],m1)
+printMatrix(m2) 
+
+
+
