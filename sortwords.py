@@ -32,7 +32,7 @@ findTopWord(scoredWords)
 '''
 
 from array import array
-baseScore = 120
+BASE_SCORE = 120
 
 
 
@@ -43,7 +43,7 @@ def weighChar(words):
 
     #first we'll make an empty array with 26 slots
     charScore = array('B', [])
-    emptyScore = array('B', [baseScore])
+    emptyScore = array('B', [BASE_SCORE])
     alphabetLength = 26
 
     for _ in range(0,alphabetLength):
