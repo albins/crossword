@@ -54,8 +54,8 @@ def weighChar(words):
         charScore = countLetters(w, charScore)
 
     # prints scoretable
-    for i in range(0, alphabetLength):
-        print charScore[i],
+    for score in charScore:
+        print charScore,
 
     return charScore
 
