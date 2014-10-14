@@ -25,5 +25,5 @@ if __name__ == '__main__':
     args = parser.parse_args()
     cleanWords = sanitizeWords(args.words)
     m = matrix.letterMatrix(args.size, args.size)
-    m = matrix.addWord(1, 1 , True, cleanWords[0], m)
+    m = stupidlyPlaceWords(m, cleanWords)
     matrix.printMatrix(m)
