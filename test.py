@@ -3,7 +3,7 @@ from nose.tools import assert_equal, assert_not_equal, assert_raises, raises
 import nose
 
 class TestBasicMatrixOperations(object):
-    MATRIX_SIZE = 30
+    MATRIX_SIZE = 20
     def setUp(self):
 
         # always make sure self.matrix is a fresh 10x10 matrix
