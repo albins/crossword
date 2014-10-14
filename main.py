@@ -1,10 +1,6 @@
 #!/usr/bin/env python2
 import argparse
-
-
-def usage():
-    return ""
-
+import lettermatrix as matrix
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate a square crossword from the given words.')
@@ -13,5 +9,8 @@ if __name__ == '__main__':
     parser.add_argument('--size', dest='size',
                         type=int, default=10,
                         help='the target crossword size as a number (default: 10x10).')
+
     args = parser.parse_args()
-    print "Generate crossword of " + str(args.size) + "x" + str(args.size) + " using " + str(args.words) + "."
+    m = matrix.letterMatrix(args.size, args.size)
+    m = matrix.addWord(1, 1 , True, args.words[0], m)
+    matrix.printMatrix(m)
