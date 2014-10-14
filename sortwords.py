@@ -79,7 +79,7 @@ def weighWordList(words):
     scores words by letting each character add to the score
     '''
 
-    copying received words, otherwise external modifications screw it up
+    # copying received words, otherwise external modifications screw it up
     indexWords = words
     #initializing list wordScore
     wordScore = []
