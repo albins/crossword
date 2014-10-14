@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 import argparse
 import lettermatrix as matrix
+import findnext as solver
 
 def sanitizeWords(words):
     '''
@@ -25,5 +26,5 @@ if __name__ == '__main__':
     args = parser.parse_args()
     cleanWords = sanitizeWords(args.words)
     m = matrix.letterMatrix(args.size, args.size)
-    m = stupidlyPlaceWords(m, cleanWords)
+    m = solver.stupidlyPlaceWords(m, cleanWords)
     matrix.printMatrix(m)
