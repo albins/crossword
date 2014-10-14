@@ -1,7 +1,25 @@
 '''
 Here we'll build a set of functions in order to find the next word in a matrix
 
-placedWords
+placeNextWord(matrix, placedWords, newWords)
+    compares list of new words against placed ones
+
+    at first match:
+    returns a list containing: word, x, y, hor/ver
+    
+    if no match: returns False
+
+
+testWord(matrix, placedWords, testWord)
+    compares given testWord to list placedWords
+    returns a list containing: word, x, y, hor/ver
+    if no match is found, returns False
+
+
+
+findMiddle(matrix, word)
+    returns the coordinates to place given word in the middle of matrix
+    might want to place this in the matrix file
 
 '''
 
@@ -9,33 +27,28 @@ from lettermatrix import *
 
 def placeNextWord(matrix, placedWords, newWords):
     '''
-    returns an updated list containing:
+    returns a list for next word containing:
         word (string)
         x-coordinate (int)
         y-coordinate (int)
         horizontal (bool)
 
-    placedWords :: takes in an old list to update
+    placedWords :: takes in a list to compare with
     newWords :: takes in new words to try and add to the list
     if no new word was found, return False
 
 
     note that the matrix must contain AT LEAST one word
     '''
-    index = 0
     #pick a new word to try
     for newWord in newWords:
         
         #test the word by using a new variable
         tryNewWord = testWord(matrix, placedWords, newWord)
-        print tryNewWord
-        #if it works, delete it from its list and return a new list using the added word
+        
+        #if it works, return it
         if tryNewWord != False:
-            newWords.pop(index)
-            #return placedWords.append(tryNewWord)
-            print "now?"
             return tryNewWord 
-        index += 1
 
     #if none of the new words fit, return False
     return False
@@ -56,11 +69,9 @@ def testWord(matrix, placedWords, testWord):
         #then we pick a character from a placed word
         placedCharIndex = 0
         for placedChar in placedWord:
-            print placedChar,
             #now we compare that character to those in the new word
             testCharIndex = 0
             for testChar in testWord:
-                print testChar,
                 #if they're the same, we try if it fits in the matrix
                 if testChar == placedChar:
                     x = placedWords[1][index]
@@ -73,8 +84,6 @@ def testWord(matrix, placedWords, testWord):
                         hor = False
                         x += placedCharIndex
                         y -= testCharIndex
-                        print "vertical"
-                        print x, y
                     else:
                         hor = True
                         y += placedCharIndex
@@ -82,7 +91,6 @@ def testWord(matrix, placedWords, testWord):
 
                     #now trying to place the character in the matrix
                     if testNewWord(x,y,hor,testWord,matrix) != False:
-                        print "returning the word"
                         return [testWord, x, y, hor]
                     
                 testCharIndex += 1
@@ -135,19 +143,20 @@ def stupidlyPlaceWords(m, words):
 
 
 '''
-a couple of test runs
+for testing the functions
 '''
 
 
-w0 = ["aoeu","oeui","euid","uidh"]
-w1 = [2, 3, 5, 6]
-w2 = [2, 9, 2, 9]
-w3 = [True, True, True, True]
+m1 = letterMatrix(20,20)
+co = findMiddle(m1,"tjoho")
+w0 = ["tjoho","aoeu","oeui","euid","uidh"]
+w1 = [co[0], 2, 3, 5, 6]
+w2 = [co[1], 9, 2, 9]
+w3 = [True, True, True, True, True]
 w = [w0,w1,w2,w3]
 print w
-m1 = letterMatrix(20,20)
 m1 = addWord(w[1][0],w[2][0],w[3][0],w[0][0],m1)
-printMatrix(m1)
+#m1 = addWord(co[0],co[1],True,"tjoho",m1)
 print "now testing testWord"
 #t1 = testWord(m1, w, "oooo")
 #print t1
