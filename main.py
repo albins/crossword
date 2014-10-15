@@ -4,7 +4,7 @@ import lettermatrix as matrix
 import findnext as solver
 import sortwords as sort
 
-def sanitizeWords(words):
+def sanitizeWords(words, maxlen):
     '''
     Clean a list of words from all non-lower-case ASCII letters.
     '''
@@ -14,7 +14,8 @@ def sanitizeWords(words):
         asciiWord = ''.join([i  if ord(i) in range(start, end) else '' for i in word])
         return asciiWord.lower()
 
-    return map(sanitizeWord, words)
+    return filter(lambda x: len(x) <= maxlen,
+                  map(sanitizeWord, words))
 
 
 
@@ -41,7 +42,11 @@ def recursivePlaceWords(m, placedWords, newWords):
     return m
 
 def main(size, words):
-    cleanWords = sort.sortWords(sanitizeWords(words))
+    cleanWords = sort.sortWords(sanitizeWords(words, size))
+    if not cleanWords:
+        print "Error: no words will fit the given matrix."
+        return
+
     #initialize new words and list of placed words
     placedWords = []
 
@@ -64,11 +69,20 @@ def main(size, words):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate a square crossword from the given words.')
-    parser.add_argument('words', metavar='W', type=str, nargs='+',
+    parser.add_argument('words', metavar='word', type=str, nargs='+',
                         help='a word to place on crossword')
+
     parser.add_argument('--size', dest='size',
-                        type=int, default=10,
+                        type=int,
                         help='the target crossword size as a number (default: 10x10).')
 
+    parser.add_argument('--file',
+                        help='File to read words from.')
+
     args = parser.parse_args()
-    main(args.size, args.words)
+    if args.size:
+        size = args.size
+    else:
+        # Use the length of the longest word as size.
+        size = max(map(lambda x: len(x), args.words))
+    main(size, args.words)
