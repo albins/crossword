@@ -25,7 +25,7 @@ def recursivePlaceWords(m, placedWords, newWords):
     #if it's possible to place
     if newWord != False:
         #put it in a matrix and add it to list of placed words
-        m = matrix.addWord(newWord[1],newWord[2],newWord[3],newWord[0], m)
+        m = matrix.addWord(*newWord, m=m)
         placedWords.append(newWord)
 
         #remove it from list of new words. would be nice to find a better solution.
@@ -51,7 +51,7 @@ def main(size, words):
     #place first word
     x, y = solver.startingPosition(m, cleanWords[0])
     firstWord = [cleanWords.pop(0), x, y, True]
-    m = matrix.addWord(firstWord[1],firstWord[2],firstWord[3],firstWord[0],m)
+    m = matrix.addWord(*firstWord,m=m)
     placedWords.append(firstWord)
 
     #start recursing

@@ -92,7 +92,7 @@ def testWord(matrix, placedWords, testWord):
                         x -= testCharIndex
 
                     #now trying to place the character in the matrix
-                    if testNewWord(x,y,hor,testWord,matrix) :
+                    if testNewWord(testWord,x,y,hor,matrix=matrix) :
                         return [testWord, x, y, hor]
 
                 testCharIndex += 1

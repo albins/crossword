@@ -81,7 +81,7 @@ def printMatrix(matrix):
         print '\n',
         y  += 1
 
-def addWord(x, y, hor, word, m):
+def addWord(word, x, y, hor, m):
     '''
     x :: 0-indexed x-coordinate
     y :: 0-indexed y-coordinate
@@ -91,7 +91,7 @@ def addWord(x, y, hor, word, m):
 
     returns False if it doesn't work, otherwise a new matrix
     '''
-    if testNewWord(x,y,hor,word,m) != True:
+    if testNewWord(word,x,y,hor,m) != True:
         return False
 
 
@@ -129,7 +129,7 @@ def addWord(x, y, hor, word, m):
     return matrix
 
 
-def testNewWord(x, y, hor, word, matrix):
+def testNewWord(word, x, y, hor, matrix):
     i = 0
     j = len(word)
 
