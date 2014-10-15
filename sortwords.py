@@ -1,6 +1,10 @@
 '''
 Here we'll have a few functions for sorting a database of words
 
+sortWords(words)
+    main function: receives, evaluates and sorts a list of words.
+    returns the processed list
+
 weighChar(words)
     takes in a list of words and scores each character
     returns array indexed by letters
@@ -35,6 +39,14 @@ from array import array
 BASE_SCORE = 120
 
 
+def sortWords(words):
+    
+    scoredWords = weighWordList(words)
+    sortedWords = sortIndexList(scoredWords)
+    
+    return sortedWords
+
+
 
 def weighChar(words):
     '''
@@ -53,9 +65,6 @@ def weighChar(words):
     for w in words:
         charScore = countLetters(w, charScore)
 
-    # prints scoretable
-    for score in charScore:
-        print charScore,
 
     return charScore
 
@@ -155,7 +164,9 @@ def findTopWord(scoredWords):
 
 
 #testing
+'''
 w = ["hej","hoho","zoo","bu","nationalencyklopedi", "kontroll"]
 
 i = weighWordList(w)
 print sortIndexList(i)
+'''
