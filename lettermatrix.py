@@ -67,14 +67,14 @@ def printMatrix(matrix):
     while y < columnLength:
         x = 0
         while x < rowLength:
-            cell = matrix[x][y]
-            if cell != EMPTY_CELL and cell != END_OF_WORD:
-                print cell,
-            else:
-                print ' ',
+            #cell = matrix[x][y]
+            #if cell != EMPTY_CELL and cell != END_OF_WORD:
+            #    print cell,
+            #else:
+            #    print ' ',
             
             
-            #print matrix[x][y],
+            print matrix[x][y],
             x += 1
 
 
@@ -149,11 +149,15 @@ def testNewWord(word, x, y, hor, matrix):
             #if empty, check surrounding spaces
             if a == EMPTY_CELL:
                 #checking above
-                if y != 0 and matrix[x+i][y-1] != EMPTY_CELL:
-                    return False
+                if y != 0:
+                    above = matrix[x+i][y-1]
+                    if above != EMPTY_CELL and above != END_OF_WORD:
+                        return False
                 #checking beneath
-                if y+1 != len(matrix[0]) and matrix[x+i][y+1] != EMPTY_CELL:
-                    return False
+                if y+1 != len(matrix[0]):
+                    beneath = matrix[x+i][y+1]
+                    if beneath != EMPTY_CELL and beneath != END_OF_WORD:
+                        return False
 
             #else, check if it's the same
             elif a != b:
@@ -186,11 +190,15 @@ def testNewWord(word, x, y, hor, matrix):
             #if empty, check surrounding spaces
             if a == EMPTY_CELL:
                 #checking to the left
-                if x != 0 and matrix[x-1][y+i] != EMPTY_CELL:
-                    return False
-                #checking beneath
-                if x+1 != len(matrix) and matrix[x+1][y+i] != EMPTY_CELL:
-                    return False
+                if x != 0:
+                    left = matrix[x-1][y+i]
+                    if left != EMPTY_CELL and left != END_OF_WORD:
+                        return False
+                #checking to the right
+                if x+1 != len(matrix):
+                    right = matrix[x+1][y+i]
+                    if right != EMPTY_CELL and right != END_OF_WORD:
+                        return False
 
             #else, check if it's the same
             elif a != b:
