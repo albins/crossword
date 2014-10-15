@@ -15,6 +15,34 @@ def sanitizeWords(words):
 
     return map(sanitizeWord, words)
 
+
+
+def recursivePlaceWords(m, placedWords, newWords):
+    
+    print "callingme"
+    newWord = solver.placeNextWord(m, placedWords, newWords)
+    
+    #if it's possible to place
+    if newWord != False:
+        
+        #put it in a matrix and add it to list of placed words
+        m = matrix.addWord(newWord[1],newWord[2],newWord[3],newWord[0], m)
+        placedWords.append(newWord)
+        
+        #remove it from list of new words. would be nice to find a better solution.
+        index = 0
+        for word in newWords:
+            if word == newWord[0]:
+                newWords.pop(index)
+            index += 1
+        
+        #call function again
+        m = recursivePlaceWords(m, placedWords, newWords)
+
+    return m
+
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate a square crossword from the given words.')
     parser.add_argument('words', metavar='W', type=str, nargs='+',
@@ -31,6 +59,19 @@ if __name__ == '__main__':
 
     #initialize matrix
     m = matrix.letterMatrix(args.size, args.size)
+    
+    #place first word
+    x, y = solver.startingPosition(m, cleanWords[0])
+    firstWord = [cleanWords.pop(0), x, y, True]
+    m = matrix.addWord(firstWord[1],firstWord[2],firstWord[3],firstWord[0],m)
+    placedWords.append(firstWord)
 
-    m = solver.placeWords(m, cleanWords)
+    #start recursing
+    m = recursivePlaceWords(m, placedWords, cleanWords)
+    
+    
+    #m = solver.placeWords(m, cleanWords)
     matrix.printMatrix(m)
+
+
+
