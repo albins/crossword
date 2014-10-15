@@ -65,6 +65,7 @@ def main(size, words):
 
     #m = solver.placeWords(m, cleanWords)
     matrix.printMatrix(m)
+    print "Could not place the following words: %s." % ', '.join(cleanWords)
 
 
 if __name__ == '__main__':
