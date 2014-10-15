@@ -19,27 +19,47 @@ def sanitizeWords(words):
 
 
 def recursivePlaceWords(m, placedWords, newWords):
-    
+
     newWord = solver.placeNextWord(m, placedWords, newWords)
-    
+
     #if it's possible to place
     if newWord != False:
         #put it in a matrix and add it to list of placed words
         m = matrix.addWord(newWord[1],newWord[2],newWord[3],newWord[0], m)
         placedWords.append(newWord)
-        
+
         #remove it from list of new words. would be nice to find a better solution.
         index = 0
         for word in newWords:
             if word == newWord[0]:
                 newWords.pop(index)
             index += 1
-        
+
         #call function again
         m = recursivePlaceWords(m, placedWords, newWords)
 
     return m
 
+def main(size, words):
+    cleanWords = sort.sortWords(sanitizeWords(words))
+    #initialize new words and list of placed words
+    placedWords = []
+
+    #initialize matrix
+    m = matrix.letterMatrix(size, size)
+
+    #place first word
+    x, y = solver.startingPosition(m, cleanWords[0])
+    firstWord = [cleanWords.pop(0), x, y, True]
+    m = matrix.addWord(firstWord[1],firstWord[2],firstWord[3],firstWord[0],m)
+    placedWords.append(firstWord)
+
+    #start recursing
+    m = recursivePlaceWords(m, placedWords, cleanWords)
+
+
+    #m = solver.placeWords(m, cleanWords)
+    matrix.printMatrix(m)
 
 
 if __name__ == '__main__':
@@ -51,26 +71,4 @@ if __name__ == '__main__':
                         help='the target crossword size as a number (default: 10x10).')
 
     args = parser.parse_args()
-
-    #initialize new words and list of placed words
-    cleanWords = sort.sortWords(sanitizeWords(args.words))
-    placedWords = []
-
-    #initialize matrix
-    m = matrix.letterMatrix(args.size, args.size)
-    
-    #place first word
-    x, y = solver.startingPosition(m, cleanWords[0])
-    firstWord = [cleanWords.pop(0), x, y, True]
-    m = matrix.addWord(firstWord[1],firstWord[2],firstWord[3],firstWord[0],m)
-    placedWords.append(firstWord)
-
-    #start recursing
-    m = recursivePlaceWords(m, placedWords, cleanWords)
-    
-    
-    #m = solver.placeWords(m, cleanWords)
-    matrix.printMatrix(m)
-
-
-
+    main(args.size, args.words)
