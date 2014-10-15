@@ -133,6 +133,11 @@ def testNewWord(x, y, hor, word, matrix):
     i = 0
     j = len(word)
 
+
+
+    if x < 0 or y < 0:
+        return False
+
     if hor:
         if x + j > len(matrix):
             return False
@@ -155,6 +160,18 @@ def testNewWord(x, y, hor, word, matrix):
                 return False
 
             i += 1
+        
+
+        #checking beginning of word
+        bow = matrix[x-1][y]
+        if bow != EMPTY_CELL and bow != END_OF_WORD and bow != 0:
+            return False
+        
+        
+        #checking at end of word
+        eow = matrix[x+i][y]
+        if eow != EMPTY_CELL and eow != END_OF_WORD and eow != len(matrix):
+            return False
 
     #now checking vertical
     else:
@@ -180,5 +197,18 @@ def testNewWord(x, y, hor, word, matrix):
 
             i += 1
 
+        #checking beginning of word
+        bow = matrix[x][y-1]
+        if bow != EMPTY_CELL and bow != END_OF_WORD and bow != 0:
+            return False
+        
+        
+        #checking end of word
+        eow = matrix[x][y+i]
+        if eow != EMPTY_CELL and eow != END_OF_WORD and eow != len(matrix[0]):
+            return False
+    
+    
+    
     #everything looks fine
     return True
