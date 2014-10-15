@@ -18,6 +18,10 @@ from copy import deepcopy
 # a string which will be represented as empty space
 EMPTY_CELL = '.'
 
+# a string blocking new words from touching beginning/end of placed words
+END_OF_WORD = ','
+
+
 def filter_empty(row_or_column):
     '''
     Filter a row or column from row() or column(), removing empty
@@ -63,7 +67,14 @@ def printMatrix(matrix):
     while y < columnLength:
         x = 0
         while x < rowLength:
-            print matrix[x][y],
+            cell = matrix[x][y]
+            if cell != EMPTY_CELL and cell != END_OF_WORD:
+                print cell,
+            else:
+                print ' ',
+            
+            
+            #print matrix[x][y],
             x += 1
 
 
@@ -95,11 +106,25 @@ def addWord(x, y, hor, word, m):
             matrix[x+i][y] = word[i]
             i += 1
 
-    #assume it's horizontal now
+        #adding placeholders
+        matrixEdge = len(matrix)
+        if x+i != matrixEdge:
+            matrix[x+i][y] = END_OF_WORD
+        if x != 0:
+            matrix[x-1][y] = END_OF_WORD
+
+    #assume it's vertical now
     else:
         while i < j:
             matrix[x][y+i] = word[i]
             i += 1
+
+        #adding placeholders
+        matrixEdge = len(matrix[0])
+        if y+i != matrixEdge:
+            matrix[x][y+i] = END_OF_WORD
+        if y != 0:
+            matrix[x][y-1] = END_OF_WORD
 
     return matrix
 
