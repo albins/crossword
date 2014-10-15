@@ -6,7 +6,7 @@ placeNextWord(matrix, placedWords, newWords)
 
     at first match:
     returns a list containing: word, x, y, hor/ver
-    
+
     if no match: returns False
 
 
@@ -42,13 +42,13 @@ def placeNextWord(matrix, placedWords, newWords):
     '''
     #pick a new word to try
     for newWord in newWords:
-        
+
         #test the word by using a new variable
         tryNewWord = testWord(matrix, placedWords, newWord)
-        
+
         #if it works, return it
         if tryNewWord != False:
-            return tryNewWord 
+            return tryNewWord
 
     #if none of the new words fit, return False
     return False
@@ -58,8 +58,8 @@ def testWord(matrix, placedWords, testWord):
     '''
     Tries to place a given word in the matrix
     First looks for it in the database. If successful, tests the word in the matrix.
-    
-    If word can be placed, it will output a list of word, x, y, and horizontal 
+
+    If word can be placed, it will output a list of word, x, y, and horizontal
     '''
 
     #first we pick a word from list of used words
@@ -72,14 +72,14 @@ def testWord(matrix, placedWords, testWord):
             #now we compare that character to those in the new word
             testCharIndex = 0
             for testChar in testWord:
-         
+
                 #if they're the same, we try if it fits in the matrix
                 if testChar == placedChar:
-                    
+
                     x = placedWords[index][1]
                     y = placedWords[index][2]
                     hor = True
-                    
+
                     #shifting x/y/hor values according to horizontal
                     #...and where the character is
                     if placedWords[index][3] == True:
@@ -95,14 +95,13 @@ def testWord(matrix, placedWords, testWord):
                     #now trying to place the character in the matrix
                     if testNewWord(x,y,hor,testWord,matrix) != False:
                         return [testWord, x, y, hor]
-                    
+
                 testCharIndex += 1
             placedCharIndex += 1
         index += 1
     return False
 
-def findMiddle(m, word):
-    # FIXME: actually calculate middle
+def startingPosition(m, word):
     xsize = len(m)
     ysize = len(m[0])
     if xsize % 2 == 1:
@@ -123,14 +122,14 @@ def findMiddle(m, word):
     else:
         xmiddle -= len(word) / 2
 
-    return [xmiddle, ymiddle]
+    return xmiddle, ymiddle
 
 def stupidlyPlaceWord(m, word):
     return None
 
 def stupidlyPlaceWords(m, words):
-    xy = findMiddle(m, words[0])
-    return [words[0],xy[0],xy[1],True]
+    x, y = startingPosition(m, words[0])
+    return [words[0], x ,y, True]
     '''
     # first word is always horizontal
     m = addWord(xy[0], xy[1], True, words[0])
@@ -169,7 +168,6 @@ nw0 = ["xx", "cool"]
 nw = placeNextWord(m1, w, nw0)
 print nw
 m2 = addWord(nw[1],nw[2],nw[3],nw[0],m1)
-printMatrix(m2) 
+printMatrix(m2)
 
 '''
-
