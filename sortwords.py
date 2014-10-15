@@ -40,10 +40,10 @@ BASE_SCORE = 120
 
 
 def sortWords(words):
-    
+
     scoredWords = weighWordList(words)
     sortedWords = sortIndexList(scoredWords)
-    
+
     return sortedWords
 
 
@@ -74,7 +74,7 @@ def countLetters(word, nCharScore):
     '''
     for l in word:
         charIndex = ord(l) - 97
-        if nCharScore[charIndex] >= 0:
+        if nCharScore[charIndex] > 0:
             nCharScore[charIndex] -= 1
 
     return nCharScore
