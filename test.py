@@ -1,5 +1,5 @@
 from lettermatrix import letterMatrix, addWord, printMatrix, EMPTY_CELL, row, column, filter_empty
-from findnext import testWord
+from findnext import testWord as tw
 from nose.tools import assert_equal, assert_not_equal, assert_raises, raises
 import nose
 from copy import deepcopy
@@ -99,7 +99,7 @@ class TestBasicMatrixOperations(object):
 	nextWord = 'jak'
         x, y = 3, 5
         m = addWord(x, y, True, firstWord, self.matrix)
-	testResult = testWord(m, [firstWord], nextWord)
+	testResult = tw(m, [firstWord], nextWord)
         assert testResult != False
 
 
