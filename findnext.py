@@ -87,7 +87,6 @@ def testWord(matrix, placedWords, testWord):
                         x += placedCharIndex
                         y -= testCharIndex
                     else:
-                        print "success"
                         hor = True
                         y += placedCharIndex
                         x -= testCharIndex
