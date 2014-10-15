@@ -12,6 +12,7 @@ addWord(int_x, int_y, bool_horizontal, string_word, matrix)
 '''
 #from array import *
 from array import array
+from copy import deepcopy
 
 
 # a string which will be represented as empty space
@@ -83,7 +84,7 @@ def addWord(x, y, hor, word, m):
         return False
 
 
-    matrix = m
+    matrix = deepcopy(m)
     i = 0
     j = len(word)
 
