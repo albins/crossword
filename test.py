@@ -87,7 +87,7 @@ class TestBasicMatrixOperations(object):
         letters_column = ''.join(filter_empty(column(nm,9)))
         assert letters_column == word
 
-    def assert_no_side_effects(func, m):
+    def assert_no_side_effects(self, func, m):
         '''Make sure the function func completes its operation on matrix
         m without changing it'''
         m_old = deepcopy(m)
@@ -95,10 +95,12 @@ class TestBasicMatrixOperations(object):
         assert m == m_old
 
     def test_testWord_issue_5(self):
-        word1, word2 = 'hej', 'jak'
+        firstWord = 'hej'
+	nextWord = 'jak'
         x, y = 3, 5
-        m = addWord(x, y, True, word1, self.matrix)
-        assert testWord(m, [word1], word2)
+        m = addWord(x, y, True, firstWord, self.matrix)
+	testResult = testWord(m, [firstWord], nextWord)
+        assert testResult != False
 
 
 if __name__ == '__main__':
