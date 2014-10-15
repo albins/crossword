@@ -47,7 +47,7 @@ def placeNextWord(matrix, placedWords, newWords):
         tryNewWord = testWord(matrix, placedWords, newWord)
 
         #if it works, return it
-        if tryNewWord != False:
+        if not tryNewWord:
             return tryNewWord
 
     #if none of the new words fit, return False
@@ -82,7 +82,7 @@ def testWord(matrix, placedWords, testWord):
 
                     #shifting x/y/hor values according to horizontal
                     #...and where the character is
-                    if placedWords[index][3] == True:
+                    if placedWords[index][3]:
                         hor = False
                         x += placedCharIndex
                         y -= testCharIndex
@@ -92,7 +92,7 @@ def testWord(matrix, placedWords, testWord):
                         x -= testCharIndex
 
                     #now trying to place the character in the matrix
-                    if testNewWord(x,y,hor,testWord,matrix) != False:
+                    if testNewWord(x,y,hor,testWord,matrix) :
                         return [testWord, x, y, hor]
 
                 testCharIndex += 1
@@ -140,7 +140,7 @@ def placeWords(m, words):
             return m
         else:
             wordToPlace, x, y, horizontal = nextWordPlacement
-            m = matrix.addWord(x, y, horizontal, wordToPlace, m)
+            m = addWord(x, y, horizontal, wordToPlace, m)
             placedWords.append(wordToPlace)
             # Remove the word we just placed
             words.remove(wordToPlace)
@@ -148,17 +148,17 @@ def placeWords(m, words):
                 # We have arrived at the end of the word list
                 return m
 
-    '''
-    # first word is always horizontal
-    m = addWord(xy[0], xy[1], True, words[0])
+    # '''
+    # # first word is always horizontal
+    # m = addWord(xy[0], xy[1], True, words[0])
 
-    # add the rest of the words
-    for word in words[1:]:
-        # try to place a word
-        # if it succeeded, proceed
-        # otherwise bail out, returning results so far
-        break
-    '''
+    # # add the rest of the words
+    # for word in words[1:]:
+    #     # try to place a word
+    #     # if it succeeded, proceed
+    #     # otherwise bail out, returning results so far
+    #     break
+    # '''
 
 
 
@@ -168,24 +168,24 @@ def placeWords(m, words):
 #uncomment to test the functions
 
 
-'''
-m1 = letterMatrix(20,20)
-co = findMiddle(m1,"tjoho")
-w0 = ["tjoho","aoeu","oeui","euid","uidh"]
-w1 = [co[0], 2, 3, 5, 6]
-w2 = [co[1], 9, 2, 9]
-w3 = [True, True, True, True, True]
-w = [w0,w1,w2,w3]
-print w
-m1 = addWord(w[1][0],w[2][0],w[3][0],w[0][0],m1)
-#m1 = addWord(co[0],co[1],True,"tjoho",m1)
-print "now testing testWord"
-#t1 = testWord(m1, w, "oooo")
-#print t1
-nw0 = ["xx", "cool"]
-nw = placeNextWord(m1, w, nw0)
-print nw
-m2 = addWord(nw[1],nw[2],nw[3],nw[0],m1)
-printMatrix(m2)
+# '''
+# m1 = letterMatrix(20,20)
+# co = findMiddle(m1,"tjoho")
+# w0 = ["tjoho","aoeu","oeui","euid","uidh"]
+# w1 = [co[0], 2, 3, 5, 6]
+# w2 = [co[1], 9, 2, 9]
+# w3 = [True, True, True, True, True]
+# w = [w0,w1,w2,w3]
+# print w
+# m1 = addWord(w[1][0],w[2][0],w[3][0],w[0][0],m1)
+# #m1 = addWord(co[0],co[1],True,"tjoho",m1)
+# print "now testing testWord"
+# #t1 = testWord(m1, w, "oooo")
+# #print t1
+# nw0 = ["xx", "cool"]
+# nw = placeNextWord(m1, w, nw0)
+# print nw
+# m2 = addWord(nw[1],nw[2],nw[3],nw[0],m1)
+# printMatrix(m2)
 
-'''
+# '''
