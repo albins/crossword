@@ -47,7 +47,7 @@ def placeNextWord(matrix, placedWords, newWords):
         tryNewWord = testWord(matrix, placedWords, newWord)
 
         #if it works, return it
-        if not tryNewWord:
+        if tryNewWord != False:
             return tryNewWord
 
     #if none of the new words fit, return False
@@ -87,7 +87,6 @@ def testWord(matrix, placedWords, testWord):
                         x += placedCharIndex
                         y -= testCharIndex
                     else:
-                        print "success"
                         hor = True
                         y += placedCharIndex
                         x -= testCharIndex
