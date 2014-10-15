@@ -80,31 +80,31 @@ if __name__ == '__main__':
                         type=int,
                         help='the target crossword size as a number (default: 10x10).')
 
-    parser.add_argument('--file', dest='file', 
-                        type=str,
+    parser.add_argument('--file', dest='file',
+                        action="store_true",
                         help='File to read words from.')
 
     args = parser.parse_args()
-    if args.size:
-        size = args.size
-    else:
-        # Use the length of the longest word as size.
-        size = max(map(lambda x: len(x), args.words))
-    
-    words = args.words
 
     if args.file:
-        filename = args.file
+        words = []
+        filename = args.words[0]
         f = open(filename)
-        read = f.readline()
-        read += " "
+        read = f.read()
         word = ""
         for char in read:
-            if char != " ":
+            if char != " " and char != '\n':
                 word += char
             else:
                 words.append(word)
                 word = ""
-        print words
+    else:
+        words = args.words
+
+    if args.size:
+        size = args.size
+    else:
+        # Use the length of the longest word as size.
+        size = max(map(lambda x: len(x), words))
 
     main(size, words)
