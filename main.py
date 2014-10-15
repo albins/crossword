@@ -2,6 +2,7 @@
 import argparse
 import lettermatrix as matrix
 import findnext as solver
+import sortwords as sort
 
 def sanitizeWords(words):
     '''
@@ -19,12 +20,10 @@ def sanitizeWords(words):
 
 def recursivePlaceWords(m, placedWords, newWords):
     
-    print "callingme"
     newWord = solver.placeNextWord(m, placedWords, newWords)
     
     #if it's possible to place
     if newWord != False:
-        
         #put it in a matrix and add it to list of placed words
         m = matrix.addWord(newWord[1],newWord[2],newWord[3],newWord[0], m)
         placedWords.append(newWord)
@@ -54,7 +53,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     #initialize new words and list of placed words
-    cleanWords = sanitizeWords(args.words)
+    cleanWords = sort.sortWords(sanitizeWords(args.words))
     placedWords = []
 
     #initialize matrix
