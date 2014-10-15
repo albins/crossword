@@ -24,28 +24,13 @@ if __name__ == '__main__':
                         help='the target crossword size as a number (default: 10x10).')
 
     args = parser.parse_args()
-    
+
     #initialize new words and list of placed words
     cleanWords = sanitizeWords(args.words)
     placedWords = []
-    
+
     #initialize matrix
     m = matrix.letterMatrix(args.size, args.size)
-    
-    #add first word from list
-    firstWord = solver.stupidlyPlaceWords(m, cleanWords)
-    m = matrix.addWord(firstWord[1],firstWord[2],firstWord[3],firstWord[0],m)
-    placedWords.append(firstWord)
-    cleanWords.pop(0)
-    nextWord = solver.placeNextWord(m, placedWords, cleanWords)
-    m = matrix.addWord(nextWord[1],nextWord[2],nextWord[3],nextWord[0],m)
-    placedWords.append(nextWord)
-    cleanWords.pop(0)
+
+    m = solver.placeWords(m, cleanWords)
     matrix.printMatrix(m)
-    print placedWords
-    nextNextWord = solver.placeNextWord(m, placedWords, cleanWords)
-    m = matrix.addWord(nextNextWord[1],nextNextWord[2],nextNextWord[3],nextNextWord[0],m)
-    matrix.printMatrix(m)
-
-
-
