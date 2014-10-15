@@ -169,9 +169,10 @@ def testNewWord(x, y, hor, word, matrix):
         
         
         #checking at end of word
-        eow = matrix[x+i][y]
-        if eow != EMPTY_CELL and eow != END_OF_WORD and eow != len(matrix):
-            return False
+        if x+i != len(matrix):
+            eow = matrix[x+i][y]
+            if eow != EMPTY_CELL and eow != END_OF_WORD:
+                return False
 
     #now checking vertical
     else:
@@ -204,9 +205,10 @@ def testNewWord(x, y, hor, word, matrix):
         
         
         #checking end of word
-        eow = matrix[x][y+i]
-        if eow != EMPTY_CELL and eow != END_OF_WORD and eow != len(matrix[0]):
-            return False
+        if y+i != len(matrix[0]):
+            eow = matrix[x][y+i]
+            if eow != EMPTY_CELL and eow != END_OF_WORD:
+                return False
     
     
     
