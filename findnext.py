@@ -117,30 +117,30 @@ def startingPosition(m, word):
 
     return xmiddle, ymiddle
 
-def placeWords(m, words):
-    x, y = startingPosition(m, words[0])
-    placedWords = []
+# def placeWords(m, words):
+#     x, y = startingPosition(m, words[0])
+#     placedWords = []
 
-    # FIXME: error checking: does the word fit?
-    # First word is always horizontal:
-    m = addWord(x, y, True, words[0], m)
-    placedWords.append(words.pop(0))
+#     # FIXME: error checking: does the word fit?
+#     # First word is always horizontal:
+#     m = addWord(x, y, True, words[0], m)
+#     placedWords.append(words.pop(0))
 
-    while True:
-        nextWordPlacement = placeNextWord(m, placedWords, words)
-        if not nextWordPlacement:
-            # It is impossible to place any of the words!
-            print "Error: cannot place next word"
-            return m
-        else:
-            wordToPlace, x, y, horizontal = nextWordPlacement
-            m = addWord(x, y, horizontal, wordToPlace, m)
-            placedWords.append(wordToPlace)
-            # Remove the word we just placed
-            words.remove(wordToPlace)
-            if not words:
-                # We have arrived at the end of the word list
-                return m
+#     while True:
+#         nextWordPlacement = placeNextWord(m, placedWords, words)
+#         if not nextWordPlacement:
+#             # It is impossible to place any of the words!
+#             print "Error: cannot place next word"
+#             return m
+#         else:
+#             wordToPlace, x, y, horizontal = nextWordPlacement
+#             m = addWord(x, y, horizontal, wordToPlace, m)
+#             placedWords.append(wordToPlace)
+#             # Remove the word we just placed
+#             words.remove(wordToPlace)
+#             if not words:
+#                 # We have arrived at the end of the word list
+#                 return m
 
     # '''
     # # first word is always horizontal
