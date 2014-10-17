@@ -74,13 +74,13 @@ def testWord(matrix, placedWords, testWord):
                 #if they're the same, we try if it fits in the matrix
                 if testChar == placedChar:
 
-                    x = placedWords[index][1]
-                    y = placedWords[index][2]
+                    x = placedWord[1]
+                    y = placedWord[2]
                     hor = True
 
                     #shifting x/y/hor values according to horizontal
                     #...and where the character is
-                    if placedWords[index][3]:
+                    if placedWord[3]:
                         hor = False
                         x += placedCharIndex
                         y -= testCharIndex
