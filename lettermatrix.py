@@ -21,6 +21,8 @@ EMPTY_CELL = '.'
 # a string blocking new words from touching beginning/end of placed words
 END_OF_WORD = ','
 
+# enable literal printing of cell characters (for debugging)
+DEBUG_PRINT=False
 
 def filter_empty(row_or_column):
     '''
@@ -59,27 +61,17 @@ def printMatrix(matrix):
     '''
     this prints the contents of the matrix in a terminal
     '''
-    columnLength = len(matrix[0])  #we will assume all the columns have the same length
-    rowLength = len(matrix)
 
-
-    y = 0
-    while y < columnLength:
-        x = 0
-        while x < rowLength:
-            #cell = matrix[x][y]
-            #if cell != EMPTY_CELL and cell != END_OF_WORD:
-            #    print cell,
-            #else:
-            #    print ' ',
-            
-            
-            print matrix[x][y],
-            x += 1
-
+    for column in matrix:
+        for cell in column:
+            if DEBUG_PRINT:
+                print cell,
+            elif cell != EMPTY_CELL and cell != END_OF_WORD:
+                print cell,
+            else:
+                print ' ',
 
         print '\n',
-        y  += 1
 
 def addWord(word, x, y, hor, m):
     '''
@@ -164,14 +156,14 @@ def testNewWord(word, x, y, hor, matrix):
                 return False
 
             i += 1
-        
+
 
         #checking beginning of word
         bow = matrix[x-1][y]
         if bow != EMPTY_CELL and bow != END_OF_WORD and bow != 0:
             return False
-        
-        
+
+
         #checking at end of word
         if x+i != len(matrix):
             eow = matrix[x+i][y]
@@ -210,15 +202,15 @@ def testNewWord(word, x, y, hor, matrix):
         bow = matrix[x][y-1]
         if bow != EMPTY_CELL and bow != END_OF_WORD and bow != 0:
             return False
-        
-        
+
+
         #checking end of word
         if y+i != len(matrix[0]):
             eow = matrix[x][y+i]
             if eow != EMPTY_CELL and eow != END_OF_WORD:
                 return False
-    
-    
-    
+
+
+
     #everything looks fine
     return True
