@@ -63,15 +63,13 @@ def testWord(matrix, placedWords, testWord):
     '''
 
     #first we pick a word from list of used words
-    index = 0
-    for placedWord in placedWords:
+    #index = 0
+    for index, placedWord in enumerate(placedWords):
         #then we pick a character from a placed word
-        placedCharIndex = 0
-        for placedChar in placedWord[0]:
+        for placedCharIndex, placedChar in enumerate(placedWord[0]):
 
             #now we compare that character to those in the new word
-            testCharIndex = 0
-            for testChar in testWord:
+            for testCharIndex, testChar in enumerate(testWord):
 
                 #if they're the same, we try if it fits in the matrix
                 if testChar == placedChar:
@@ -94,10 +92,6 @@ def testWord(matrix, placedWords, testWord):
                     #now trying to place the character in the matrix
                     if testNewWord(testWord,x,y,hor,matrix=matrix) :
                         return [testWord, x, y, hor]
-
-                testCharIndex += 1
-            placedCharIndex += 1
-        index += 1
     return False
 
 def startingPosition(m, word):
@@ -189,5 +183,3 @@ def placeWords(m, words):
 # printMatrix(m2)
 
 # '''
-
-
