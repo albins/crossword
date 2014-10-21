@@ -1,0 +1,21 @@
+* Purpose
+»Scrabble for one computer«. Generate and print a crossword-like matrix of horizontally and vertically overlapping words from a set using an approximative algorithm.
+
+* Usage
+Invoke =main.py= without arguments, or see =--help=!
+
+Samples:
+- =./main.py --size 40 bork pork fish steak=
+- =./main.py --file ebook.txt=
+* Prerequisites
+- Uses [[https://nose.readthedocs.org/en/latest/][Nosetest]] for testing.
+- Python 2.7 (might work under 3 with minimal tweaking)
+* Testing
+#+BEGIN_SRC sh
+easy_install nose # or pip install nose
+osetests
+#+END_SRC
+
+For continuous testing on file changes, run =watch_files.sh= (requires inotifywait from inotify-tools).
+
+You can enable debugging output (printing of end-of-word markers and empty cell markers) in the top of lettermatrix.py.
