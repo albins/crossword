@@ -1,5 +1,7 @@
 * Purpose
-»Scrabble for one computer«. Generate and print a crossword-like matrix of horizontally and vertically overlapping words from a set using an approximative algorithm.
+»Scrabble for one computer«. Generate and print a crossword-like matrix of horizontally and vertically overlapping words from a set using a heuristic algorithm. Not all words are guaranteed to be placed, and the solution is not always the  best possible one.
+
+Performance is fast up to matrices of 50x50 and somewhere around 500 words.
 
 * Usage
 Invoke =main.py= without arguments, or see =--help=!
@@ -19,3 +21,11 @@ osetests
 For continuous testing on file changes, run =watch_files.sh= (requires inotifywait from inotify-tools).
 
 You can enable debugging output (printing of end-of-word markers and empty cell markers) in the top of lettermatrix.py.
+* Known issues
+1. The algorithm is very slow when the word list is significantly larger than what would fit in the matrix, a very common case for a word list with many words of similar size. If you find that the algorithm is performing very slowly, try increasing the matrix size using the =--size= argument.
+
+2. Due to how words and letters are rated, the algoritm can be tricked to place a bad starting word if it has sufficiently many uncommon characters compared to other words in the list. For such an example, see e.g. =./main.py zzzzzz bye=.
+
+3. /All/ non-ASCII characters are filtered.
+
+4. Unicode might not work (besides all Unicode characters being filtered)
