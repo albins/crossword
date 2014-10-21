@@ -1,3 +1,46 @@
+#+BEGIN_EXAMPLE
+            d a r r e l s       w h i z s     s h e l t o n s   w   p r i s m s
+                      a         h                           a   a     e
+                      g       s i d e l i g h t s           v   v   w e b s
+                p     o         s               h a b i t u a t e d   n
+                a     o   k y o t o             u           g   r     f
+          m e r c h a n t       l     m a g n e t i s m s   i   i     o
+                k   n           e               t           n   n     r   s
+          p o t e n t a t e s   s   v i v i d n e s s s     g   g     c   l
+                t   i                           r                     e   i
+        l u c a s   b e n c h m a r k s   p     b   s p o k e s p e r s o n s
+      y             o     o   a           o     u       u                 g
+      e   u n k i n d     m   n           l     g     a t r o p h i e d   s
+      l             y     p r o j e c t i o n i s t     s                 h
+      l o v e r s     m o e   r         n             c o r d i a l l y   o
+      o                   n     p u n c t u a t i n g   u                 t
+      w h e e l c h a i r s             e               r   r       s     s
+j o y s                   a   g u a d a l c a n a l s   c h e e k i l y
+        s h r u b b i e s t             l               i   t       a   g
+                y         i     c o m m i s e r a t i o n   i   r e p r o v e
+                      s   o             g           o   g   r       p   a     o
+          s p a c i o u s n e s s   c o i f f u r i n g     i   g l i s t e n s
+            h         i                 b                   n       n   e     m
+            r a d i a t o r s   m u l t i p l e x e r       g       g   e     a
+            y         a                 l                     z         s     n
+            g     n i b s       c l a v i c h o r d   c u r i o s         a   s
+    g r o t i u s     l         a   p   t   a   e             o   s a r a n s
+            a         y         m   p   y   r   m             m           t
+  s o u w e s t e r         s   p   e       e   o b l i g a t e s     p   a
+                            p   a   r       b   v             d       e   r
+                  m u t a t i o n   t       r   a r m f u l s     h a t t e d
+              j             r   e   a   s   a   b           o         e   s
+    e c z e m a         t   i   l   i   o   i   l   t       o         r
+              n   d     y   t   l   n   m   n   e   y     i t a i p u s
+        g     a   i     p   l   a   e   a   e       p       h     e   e
+    j   r     c h a t t e r e r s   d   l e d e r b e r g   e     r   n   u
+  l o r a i n e   r     c   s           i           c       d     m       n
+    u   b     k   r   p a m s           a   m e s d a m e s       i       l
+    s   s         h     s               n           s             t h e b e s
+    t     p a d d e d   t   p o p p e r s           t h r i l l   s       s
+    s             a                       k i d d o s               t i n s e l
+#+END_EXAMPLE
+
 * Purpose
 »Scrabble for one computer«. Generate and print a crossword-like matrix of horizontally and vertically overlapping words from a set using a heuristic algorithm. Not all words are guaranteed to be placed, and the solution is not always the  best possible one.
 
